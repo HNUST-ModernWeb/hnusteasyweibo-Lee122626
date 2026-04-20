@@ -1,0 +1,15 @@
+# frontend
+mini-weibo-vue/node_modules/
+mini-weibo-vue/dist/
+
+# backend
+mini-weibo-server/target/
+mini-weibo-server/.idea/
+mini-weibo-server/*.iml
+
+# root
+node_modules/
+.vscode/
+.idea/
+*.iml
+.DS_Store

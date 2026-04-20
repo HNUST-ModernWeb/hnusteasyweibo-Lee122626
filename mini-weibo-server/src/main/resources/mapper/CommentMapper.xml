@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.weibo.mapper.CommentMapper">
+
+    <select id="selectByPostId" resultType="com.example.weibo.entity.Comment">
+        select
+        c.id,
+        c.post_id,
+        c.user_id,
+        c.content,
+        u.nickname,
+        c.create_time
+        from tb_comment c
+        left join tb_user u on c.user_id = u.id
+        where c.post_id = #{postId}
+        order by c.id asc
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_comment (post_id, user_id, content)
+        values (#{postId}, #{userId}, #{content})
+    </insert>
+
+</mapper>

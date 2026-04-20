@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>微博项目 · 第一阶段原型</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">Mini Weibo</div>
+            <nav class="nav">
+                <button class="nav-btn active" data-page="home">首页</button>
+                <button class="nav-btn" data-page="publish">发布</button>
+                <button class="nav-btn" data-page="profile">个人主页</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app">
+        <div class="layout">
+            <aside class="card user-box">
+                <div class="avatar" id="sideAvatar">T</div>
+                <h3 id="sideNickname">tr同学</h3>
+                <p class="muted" id="sideBio">正在完成微博项目第一阶段原型。</p>
+                <div class="stats">
+                    <div class="stat"><strong id="statPosts">3</strong><span class="muted">微博</span></div>
+                    <div class="stat"><strong>26</strong><span class="muted">关注</span></div>
+                    <div class="stat"><strong>118</strong><span class="muted">粉丝</span></div>
+                </div>
+            </aside>
+
+            <section>
+                <div class="page active" id="page-home">
+                    <div class="card composer">
+                        <h2 class="section-title">首页信息流</h2>
+                        <p class="muted">第一阶段先完成静态页面和基础交互，这里支持本地动态发布展示。</p>
+                    </div>
+                    <div class="feed" id="feed"></div>
+                </div>
+
+                <div class="page" id="page-publish">
+                    <div class="card composer">
+                        <h2 class="section-title">发布微博</h2>
+                        <label>
+                            <div class="muted" style="margin-bottom:8px;">微博内容</div>
+                            <textarea id="postContent" placeholder="分享一下今天的学习进度吧..."></textarea>
+                        </label>
+                        <div class="row" style="margin-top:12px; align-items:center; justify-content:space-between;">
+                            <div class="muted"><span id="wordCount">0</span>/140</div>
+                            <button class="btn btn-primary" id="publishBtn">立即发布</button>
+                        </div>
+                        <div class="error" id="publishError">内容不能为空，且不能超过 140 字。</div>
+                        <div class="success" id="publishSuccess">发布成功，已同步到首页和个人主页。</div>
+                        <div class="hint">已实现：表单验证、字数统计、动态内容展示。</div>
+                    </div>
+                </div>
+
+                <div class="page" id="page-profile">
+                    <div class="card">
+                        <div class="profile-banner"></div>
+                        <div class="profile-head">
+                            <div class="profile-avatar" id="profileAvatar">T</div>
+                            <div>
+                                <h2 style="margin:0;" id="profileNickname">tr同学</h2>
+                                <p class="muted" id="profileBio">正在完成微博项目第一阶段原型。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card profile-edit" style="margin-top:16px;">
+                        <h3 class="section-title">编辑个人资料</h3>
+                        <div class="row">
+                            <div style="flex:1 1 220px;">
+                                <div class="muted" style="margin-bottom:8px;">昵称</div>
+                                <input id="nicknameInput" maxlength="12" placeholder="请输入昵称" />
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;">
+                            <div class="muted" style="margin-bottom:8px;">个性签名</div>
+                            <textarea id="bioInput" maxlength="60" placeholder="写一句介绍自己吧"></textarea>
+                        </div>
+                        <div class="row" style="margin-top:12px; align-items:center; justify-content:space-between;">
+                            <div class="muted"><span id="bioCount">0</span>/60</div>
+                            <button class="btn btn-primary" id="saveProfileBtn">保存资料</button>
+                        </div>
+                        <div class="error" id="profileError">昵称不能为空，简介不能超过 60 字。</div>
+                        <div class="success" id="profileSuccess">资料更新成功。</div>
+                    </div>
+
+                    <div class="card" style="margin-top:16px;">
+                        <h3 class="section-title">我的微博</h3>
+                        <div class="feed" id="profileFeed"></div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="card">
+                <h3 class="section-title">第一阶段完成项</h3>
+                <div class="tag-list">
+                    <span class="tag">主页原型</span>
+                    <span class="tag">发布页面</span>
+                    <span class="tag">个人主页</span>
+                    <span class="tag">表单验证</span>
+                    <span class="tag">动态内容展示</span>
+                    <span class="tag">简单特效</span>
+                </div>
+                <hr style="border:none;border-top:1px solid #eef1f4;margin:18px 0;">
+                <h3 class="section-title">下一步建议</h3>
+                <p class="muted" style="line-height:1.8; margin:0;">
+                    第二阶段可以把当前页面拆成 Vue 组件，再接入 Vue Router 和 Pinia。
+                </p>
+            </aside>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

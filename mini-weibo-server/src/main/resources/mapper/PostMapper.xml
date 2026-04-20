@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.weibo.mapper.PostMapper">
+
+    <select id="selectList" resultType="com.example.weibo.entity.Post">
+        select
+        p.id,
+        p.user_id,
+        p.content,
+        p.image,
+        p.like_count,
+        p.create_time,
+        p.update_time,
+        <choose>
+            <when test="userId != null">
+                case when l.id is not null then true else false end as liked
+            </when>
+            <otherwise>
+                false as liked
+            </otherwise>
+        </choose>
+        from tb_post p
+        <if test="userId != null">
+            left join tb_post_like l
+            on p.id = l.post_id and l.user_id = #{userId}
+        </if>
+        order by p.id desc
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_post (user_id, content, image, like_count)
+        values (#{userId}, #{content}, #{image}, #{likeCount})
+    </insert>
+
+    <delete id="deleteById">
+        delete from tb_post where id = #{id}
+    </delete>
+
+    <update id="increaseLikeCount">
+        update tb_post
+        set like_count = like_count + 1
+        where id = #{id}
+    </update>
+
+    <update id="decreaseLikeCount">
+        update tb_post
+        set like_count = case
+        when like_count > 0 then like_count - 1
+        else 0
+        end
+        where id = #{id}
+    </update>
+
+</mapper>

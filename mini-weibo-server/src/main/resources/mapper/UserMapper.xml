@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.weibo.mapper.UserMapper">
+
+    <select id="selectByUsername" resultType="com.example.weibo.entity.User">
+        select id, username, password, nickname, bio, create_time, update_time
+        from tb_user
+        where username = #{username}
+    </select>
+
+    <select id="selectById" resultType="com.example.weibo.entity.User">
+        select id, username, password, nickname, bio, create_time, update_time
+        from tb_user
+        where id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_user (username, password, nickname, bio)
+        values (#{username}, #{password}, #{nickname}, #{bio})
+    </insert>
+
+    <update id="updateProfile">
+        update tb_user
+        set nickname = #{nickname},
+        bio = #{bio}
+        where id = #{id}
+    </update>
+
+</mapper>

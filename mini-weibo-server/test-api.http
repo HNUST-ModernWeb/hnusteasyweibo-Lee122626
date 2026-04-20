@@ -1,0 +1,93 @@
+### 注册
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "lee",
+  "password": "123456",
+  "nickname": "lee"
+}
+
+### 登录
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "lee",
+  "password": "123456"
+}
+
+### 发布微博
+POST http://localhost:8080/api/post
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "content": "这是我的第一条后端微博",
+  "image": ""
+}
+
+### 查询微博列表
+GET http://localhost:8080/api/post/list
+
+### 删除微博列表
+DELETE http://localhost:8080/api/post/2
+
+### 查询用户信息
+GET http://localhost:8080/api/auth/user/1
+
+### 修改用户资料
+PUT http://localhost:8080/api/auth/user
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nickname": "tr同学",
+  "bio": "这是联调后的真实个人简介"
+}
+
+### 查询评论
+GET http://localhost:8080/api/post/1/comments
+
+### 发表评论
+POST http://localhost:8080/api/post/1/comments
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "content": "这是第一条评论"
+}
+
+### 注册测试
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "test888",
+  "password": "123456",
+  "nickname": "测试用户"
+}
+
+### 登录测试
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test888",
+  "password": "123456"
+}
+
+### 收藏测试
+POST http://localhost:8080/api/post/1/favorite?userId=2
+
+### 取消收藏测试
+DELETE http://localhost:8080/api/post/1/favorite?userId=2
+
+### 点赞测试
+POST http://localhost:8080/api/post/1/like?userId=2
+
+### 取消点赞测试
+DELETE http://localhost:8080/api/post/1/like?userId=2
+
+### 查询微博列表（带用户）
+GET http://localhost:8080/api/post/list?userId=2
